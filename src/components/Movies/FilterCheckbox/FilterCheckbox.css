@@ -1,0 +1,71 @@
+.filter {
+  cursor: pointer;
+  display: flex;
+  margin: 25px 0 0 0;
+  max-width: 170px;
+}
+
+.filter__switch {
+  display: inline-block;
+  background: #ebebeb;
+  border-radius: 20px;
+  width: 36px;
+  height: 20px;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.25s;
+}
+
+.filter__switch:before,
+.filter__switch:after {
+  content: "";
+  box-sizing: border-box;
+}
+
+.filter__switch:before {
+  display: block;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  transition: left 0.25s;
+  box-sizing: border-box;
+}
+
+.filter__checkbox:checked + .filter__switch {
+  background: #2be080;
+}
+.filter__checkbox:checked + .filter__switch:before {
+  left: 22px;
+  background: #ffffff;
+}
+
+.filter__checkbox {
+  display: none;
+}
+
+.filter__text {
+  margin: 1px 0 1px 14px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.filter__text:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 380px) {
+  .filter {
+    margin: 32px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .filter__text {
+    font-size: 11px;
+  }
+}
