@@ -4,11 +4,11 @@ import logo from "../../images/header_logo.svg";
 
 function Register() {
   return (
-    <section className="register">
+    <main className="register">
       <Link to="/" className="register__logo-case">
         <img src={logo} alt="логотип проекта" className="register__logo" />
       </Link>
-      <h2 className="register__title">Добро пожаловать!</h2>
+      <h1 className="register__title">Добро пожаловать!</h1>
       <form className="register__form">
         <div className="register__case">
           <p className="register__text-input">Имя</p>
@@ -18,6 +18,8 @@ function Register() {
             type="text"
             name="name"
             required
+            minlength="2"
+            maxlength="40"
             value="Виталий"
           ></input>
           <span className="register__err-input"></span>
@@ -37,11 +39,13 @@ function Register() {
         <div className="register__case">
           <p className="register__text-input">Пароль</p>
           <input
-            className="register__input register__err_input"
+            className="register__input register__input_err"
             placeholder="Придумайте пароль"
             type="password"
             name="password"
             required
+            minlength="2"
+            maxlength="40"
             value="pochta@yandex.ru"
           ></input>
           <span className="register__err-message">Что-то пошло не так...</span>
@@ -54,7 +58,7 @@ function Register() {
           <span className="register__login-link_color">&#8200;Войти</span>
         </Link>
       </form>
-    </section>
+    </main>
   );
 }
 

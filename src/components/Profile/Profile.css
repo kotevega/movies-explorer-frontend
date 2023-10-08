@@ -52,6 +52,11 @@
   padding: 0;
 }
 
+.profile__input:focus {
+  font-weight: 500;
+  border-bottom: 1px solid #4285f4;
+}
+
 .profile__edit-button {
   margin: 204px auto 0 auto;
   text-align: center;

@@ -1,4 +1,4 @@
-.menu__button_enter {
+.menu__button-enter {
   background-color: #3ddc84;
   border-radius: 3px;
   border: none;
@@ -11,11 +11,11 @@
   cursor: pointer;
 }
 
-.menu__button_enter:hover {
+.menu__button-enter:hover {
   opacity: 0.8;
 }
 
-.menu__link_logout {
+.menu__link-logout {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -23,18 +23,18 @@
   text-decoration: none;
 }
 
-.menu__link_logout:hover {
+.menu__link-logout:hover {
   opacity: 0.7;
 }
 
 @media screen and (max-width: 360px) {
-  .menu__button_enter {
+  .menu__button-enter {
     width: 54px;
     height: 26px;
     margin-left: 14px;
   }
 
-  .menu__link_logout {
+  .menu__link-logout {
     font-size: 10px;
   }
 }

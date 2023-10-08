@@ -1,4 +1,5 @@
 import React from "react";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { NavLink, useLocation } from "react-router-dom";
 import logoProfile from "../../../images/profile_logo.svg";
 import "../Navigation.css";
@@ -9,7 +10,7 @@ function NavigationLogin() {
   const location = useLocation();
 
   const menuLinkActive = ({ isActive }) =>
-    `menu__link-movies ${isActive ? "menu__link_active" : ""}`;
+    `menu__link-movies ${isActive ? "menu__link-movies_active" : ""}`;
 
   function toggleMenuBurger() {
     setIsMenuOpen(!isMenuOpen);
@@ -18,6 +19,8 @@ function NavigationLogin() {
   function closeMenuOpen() {
     setIsMenuOpen(false);
   }
+  
+  isMenuOpen ? disableBodyScroll(document) : enableBodyScroll(document);
 
   return (
     <nav className={`menu ${isMenuOpen ? "menu_open" : ""}`}>
@@ -62,7 +65,7 @@ function NavigationLogin() {
             <img
               src={logoProfile}
               alt="иконка аккаунта"
-              className="menu__profile_logo"
+              className="menu__profile-logo"
             />
           </div>
         </NavLink>

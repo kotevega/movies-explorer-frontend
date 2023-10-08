@@ -5,11 +5,11 @@ import "../NavigationLogout/NavigationLogout.css";
 function NavigationLogout() {
   return (
     <nav className="menu">
-      <NavLink to="/signup" className="menu__link_logout">
+      <NavLink to="/signup" className="menu__link-logout">
         Регистрация
       </NavLink>
-      <NavLink to="/signin" className="menu__link_logout">
-        <button className="menu__button_enter" type="button">
+      <NavLink to="/signin" className="menu__link-logout">
+        <button className="menu__button-enter" type="button">
           Войти
         </button>
       </NavLink>

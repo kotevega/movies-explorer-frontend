@@ -4,11 +4,11 @@ import logo from "../../images/header_logo.svg";
 
 function Login() {
   return (
-    <section className="login">
+    <main className="login">
       <Link to="/" className="login__logo-case">
         <img src={logo} alt="логотип проекта" className="login__logo" />
       </Link>
-      <h2 className="login__title">Рады видеть!</h2>
+      <h1 className="login__title">Рады видеть!</h1>
       <form className="login__form">
         <div className="login__case">
           <p className="login__text-input">E-mail</p>
@@ -29,6 +29,8 @@ function Login() {
             placeholder="Введите Ваш пароль"
             type="password"
             name="password"
+            minlength="2"
+            maxlength="40"
             required
           ></input>
           <span className="login__err-message"></span>
@@ -41,7 +43,7 @@ function Login() {
           <span className="login__login-link_color">&#8200;Регистрация</span>
         </Link>
       </form>
-    </section>
+    </main>
   );
 }
 

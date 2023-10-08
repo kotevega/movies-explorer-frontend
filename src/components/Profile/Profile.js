@@ -10,8 +10,8 @@ function Profile() {
   }
 
   return (
-    <section className="profile">
-      <h2 className="profile__title">Привет, Виталий!</h2>
+    <main className="profile">
+      <h1 className="profile__title">Привет, Виталий!</h1>
       <form className="profile__form">
         <div className="profile__case">
           <p className="profile__text-input">Имя</p>
@@ -21,6 +21,8 @@ function Profile() {
             type="text"
             name="name"
             required
+            minlength="2"
+            maxlength="40"
             value="Виталий"
           ></input>
         </div>
@@ -45,14 +47,14 @@ function Profile() {
           {isChangeProfile ? "Сохранить" : "Редактировать"}
         </button>
         {!isChangeProfile ? (
-          <Link className="profile__logout" to="/signin">
+          <Link className="profile__logout" to="/">
             Выйти из аккаунта
           </Link>
         ) : (
           ""
         )}
       </form>
-    </section>
+    </main>
   );
 }
 

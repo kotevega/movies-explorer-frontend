@@ -5,6 +5,7 @@
 
 .search-form {
   display: flex;
+  justify-content: space-between;
   max-width: 1140px;
   border: 1.5px solid rgba(170, 170, 170, 0.2);
   border-radius: 8px;
@@ -12,6 +13,7 @@
 
 .search-form__input {
   width: 100%;
+  max-width: 500px;
   outline: none;
   background-color: #202020;
   border: 0;
@@ -22,6 +24,11 @@
   margin: 25px 0 25px 24px;
   box-sizing: border-box;
   padding: 0;
+}
+
+.search-form__input:focus {
+  font-weight: 500;
+  border-bottom: 1px solid #4285f4;
 }
 
 .search-form__submit {

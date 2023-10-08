@@ -1,21 +1,23 @@
 import "./MoviesCardList.css";
-import MoviesCard from '../MoviesCard/MoviesCard'
+import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList() {
   return (
-    <section className="card-list">
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
+    <section className="cards">
+      <ul className="card-list">
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+      </ul>
     </section>
   );
 }

@@ -5,19 +5,19 @@ function Techs() {
     <section className="techs">
       <h2 className="techs__title">Технологии</h2>
       <div className="techs__container">
-        <h3 className="techs__container_title">7 технологий</h3>
-        <p className="techs__container_subtitle">
+        <h3 className="techs__container-title">7 технологий</h3>
+        <p className="techs__container-subtitle">
           На курсе веб-разработки мы освоили технологии, которые применили в
           дипломном проекте.
         </p>
-        <ul className="techs__container_list">
-          <li className="techs__container_item">HTML</li>
-          <li className="techs__container_item">CSS</li>
-          <li className="techs__container_item">JS</li>
-          <li className="techs__container_item">React</li>
-          <li className="techs__container_item">Git</li>
-          <li className="techs__container_item">Express.js</li>
-          <li className="techs__container_item">mongoDB</li>
+        <ul className="techs__container-list">
+          <li className="techs__container-item">HTML</li>
+          <li className="techs__container-item">CSS</li>
+          <li className="techs__container-item">JS</li>
+          <li className="techs__container-item">React</li>
+          <li className="techs__container-item">Git</li>
+          <li className="techs__container-item">Express.js</li>
+          <li className="techs__container-item">mongoDB</li>
         </ul>
       </div>
     </section>

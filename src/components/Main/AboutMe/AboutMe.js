@@ -18,7 +18,11 @@ function AboutMe() {
             дерева. После того, как прошёл курс по веб-разработке, начал
             заниматься фриланс-заказами и ушёл с работы.
           </p>
-          <Link to="https://github.com/kotevega" className="author__repository">
+          <Link
+            to="https://github.com/kotevega"
+            className="author__repository"
+            target="_blank"
+          >
             Github
           </Link>
         </div>

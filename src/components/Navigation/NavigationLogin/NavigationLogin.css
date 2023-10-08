@@ -4,10 +4,10 @@
 
 .menu_open .menu__burger-cover {
   display: block;
-  width: 97vw;
-  height: 100vh;
+  width: 97%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -28,7 +28,7 @@
   flex-direction: column;
   justify-content: space-between;
   background: #202020;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   height: 100vh;
@@ -77,11 +77,11 @@
   padding: 0 0 4px 0;
 }
 
-.menu__link_active {
+.menu__link-movies_active {
   font-weight: 500;
 }
 
-.menu_open .menu__link_active {
+.menu_open .menu__link-movies_active {
   border-bottom: 2px solid #fff;
 }
 
@@ -124,7 +124,7 @@
   background-color: #313131;
 }
 
-.menu__profile_logo {
+.menu__profile-logo {
   width: 10.38px;
   height: 10.67px;
 }
@@ -216,7 +216,7 @@
     padding: 0 0 5px 0;
   }
 
-  .menu_open .menu__link-profile {
+  .menu_open .menu__container-link-profile {
     margin: 0 0 48px 0;
   }
 

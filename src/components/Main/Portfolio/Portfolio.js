@@ -10,28 +10,32 @@ function Portfolio() {
           <Link
             to="https://github.com/kotevega/how-to-learn"
             className="portfolio__link"
+            target="_blank"
           >
-            Статичный сайт
+            <p className="portfolio__text"> Статичный сайт</p>
+            <p className="portfolio__cursor">&#8599;</p>
           </Link>
-          <p className="portfolio__cursor">&#8599;</p>
         </li>
         <li className="portfolio__item">
           <Link
             to="https://github.com/kotevega/russian-travel-project"
             className="portfolio__link"
+            target="_blank"
           >
-            Адаптивный сайт
+            <p className="portfolio__text">Адаптивный сайт</p>
+
+            <p className="portfolio__cursor">&#8599;</p>
           </Link>
-          <p className="portfolio__cursor">&#8599;</p>
         </li>
         <li className="portfolio__item">
           <Link
             to="https://mestokote.nomoreparties.co"
             className="portfolio__link"
+            target="_blank"
           >
-            Одностраничное приложение
+            <p className="portfolio__text">Одностраничное приложение</p>
+            <p className="portfolio__cursor">&#8599;</p>
           </Link>
-          <p className="portfolio__cursor">&#8599;</p>
         </li>
       </ul>
     </section>
