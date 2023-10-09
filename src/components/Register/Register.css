@@ -1,0 +1,146 @@
+.register {
+  padding: 70px 0 70px 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 396px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.register__logo {
+  width: 38px;
+  height: 38px;
+}
+
+.register__title {
+  margin: 37px 0 0 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+}
+
+.register__form {
+  margin: 40px 0 0 0;
+}
+
+.register__case {
+  width: 100%;
+  margin: 0 0 24px 0;
+}
+
+.register__case:last-of-type {
+  margin: 0;
+}
+
+.register__text-input {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #8b8b8b;
+  margin: 0 0 3px 0;
+}
+
+.register__input {
+  width: 100%;
+  outline: none;
+  background-color: #202020;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #424242;
+  box-sizing: border-box;
+}
+
+.register__input:focus {
+  font-weight: 500;
+  border-bottom: 1px solid #4285f4;
+}
+
+.register__input_err {
+  color: #ee3465;
+}
+
+.register__err-message {
+  margin: 6px 0 0 0;
+  color: #ee3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+}
+
+.register__submit-button {
+  background: #4285f4;
+  color: #ffffff;
+  width: 100%;
+  padding: 13px 0 15px 0;
+  margin: 135px 0 17px 0;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+.register__submit-button:hover {
+  opacity: 0.8;
+}
+
+.register__login-link {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: #8b8b8b;
+}
+
+.register__login-link:hover {
+  opacity: 0.7;
+}
+.register__login-link_color {
+  color: #4285f4;
+}
+
+@media screen and (max-width: 770px) {
+  .register {
+    padding: 232px 0 232px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .register {
+    padding: 55px 0 30px 0;
+    max-width: 260px;
+    width: 100%;
+  }
+
+  .register__logo-case {
+    text-align: center;
+  }
+
+  .register__title {
+    margin: 48px 0 0 0;
+    text-align: center;
+  }
+
+  .register__form {
+    margin: 80px 0 0 0;
+  }
+
+  .register__submit-button {
+    padding: 15px 0 15px 0;
+    margin: 223px 0 16px 0;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__login-link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

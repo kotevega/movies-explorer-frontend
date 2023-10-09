@@ -1,0 +1,15 @@
+.menu {
+  margin: 0 70px 0 0;
+}
+
+@media screen and (max-width: 770px) {
+  .menu {
+    margin: 0 30px 0 0;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .menu {
+    margin: 0 14px 0 0;
+  }
+}

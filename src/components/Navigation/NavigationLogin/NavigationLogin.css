@@ -1,0 +1,240 @@
+.menu__burger-cover {
+  display: none;
+}
+
+.menu_open .menu__burger-cover {
+  display: block;
+  width: 97%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.menu__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu_open .menu__container {
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #202020;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 2;
+}
+
+.menu__links {
+  display: flex;
+  justify-content: space-between;
+  width: 230px;
+  width: 100%;
+}
+
+.menu_open .menu__links {
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #202020;
+  margin: 160px 0 0 0;
+}
+
+.menu__link-movies {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu__link-movies:hover {
+  opacity: 0.7;
+}
+
+.menu__link-movies:first-child {
+  margin: 0 21px 0 0;
+}
+
+.menu_open .menu__link-movies {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21.78px;
+  margin: 0 0 24px 0;
+  padding: 0 0 4px 0;
+}
+
+.menu__link-movies_active {
+  font-weight: 500;
+}
+
+.menu_open .menu__link-movies_active {
+  border-bottom: 2px solid #fff;
+}
+
+.menu__link-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 50px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 40px;
+}
+
+.menu__link-profile:hover {
+  opacity: 0.7;
+}
+
+.menu_open .menu__link-profile {
+  margin: 0 0 92px 0;
+  padding: 0;
+}
+
+.menu__profile-case {
+  background-color: #0f4157;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 13px;
+}
+
+.menu_open .menu__profile-case,
+.menu__profile-case_theme {
+  background-color: #313131;
+}
+
+.menu__profile-logo {
+  width: 10.38px;
+  height: 10.67px;
+}
+
+.menu__burger-button {
+  display: none;
+}
+
+.menu_open .menu__burger-button {
+  width: 22px;
+  height: 22px;
+  background: transparent url("../../../images/icon_close.svg") center no-repeat;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  z-index: 3;
+  right: 27px;
+  top: 27px;
+}
+
+.menu_open .menu__burger-closebtn {
+  width: 22px;
+  height: 22px;
+  background: transparent url("../../../images/icon_close.svg") center no-repeat;
+  background-size: 22px 22px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  z-index: 3;
+}
+
+.menu__burger-button_active {
+  display: block;
+  width: 44px;
+  height: 44px;
+  background: transparent url("../../../images/burger_menu.svg") center
+    no-repeat;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  z-index: 3;
+  position: absolute;
+  right: 30px;
+  top: 15px;
+}
+
+@media screen and (max-width: 770px) {
+  .menu_open .menu__burger-cover {
+    width: 95vw;
+  }
+
+  .menu__container {
+    display: none;
+  }
+
+  .menu__burger-button {
+    display: block;
+    width: 44px;
+    height: 44px;
+    background: transparent url("../../../images/burger_menu.svg") center
+      no-repeat;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    z-index: 3;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .menu_open .menu__burger-cover {
+    width: 93vw;
+  }
+
+  .menu_open .menu__links {
+    margin: 145px 0 0 0;
+  }
+
+  .menu_open .menu__link-movies {
+    margin: 0 0 19px 0;
+    padding: 0 0 5px 0;
+  }
+
+  .menu_open .menu__container-link-profile {
+    margin: 0 0 48px 0;
+  }
+
+  .menu__burger-button {
+    width: 40px;
+    height: 47px;
+    background-size: 35px 38px;
+    right: 14px;
+    top: 13px;
+  }
+
+  .menu_open .menu__burger-button {
+    right: 18px;
+    top: 18px;
+  }
+
+  .menu_open .menu__burger-button {
+    right: 18px;
+    top: 18px;
+  }
+}

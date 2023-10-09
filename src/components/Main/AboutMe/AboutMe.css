@@ -1,0 +1,151 @@
+.author {
+  padding: 111px 70px 100px 70px;
+}
+
+.author__title {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.04em;
+}
+
+.author__container {
+  margin: 23px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #dadada;
+}
+
+.author__about {
+  max-width: 600px;
+  margin: 66px 0 0 0;
+}
+
+.author__name {
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.04em;
+}
+
+.author__occupation {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 18px 0 0 0;
+  padding: 0;
+}
+
+.author__biography {
+  margin: 26px 0 75px 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.author__repository {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.author__repository:hover {
+  opacity: 0.7;
+}
+
+.author__photo {
+  margin: 66px 0 0 49px;
+  width: 270px;
+  height: 327px;
+  min-width: 270px;
+  min-height: 327px;
+  border-radius: 10px;
+  object-position: center;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 880px) {
+  .author {
+    padding: 90px 50px 90px 50px;
+  }
+
+  .author__about {
+    max-width: 348px;
+  }
+
+  .author__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .author__occupation {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 16px 0 0 0;
+  }
+
+  .author__biography {
+    margin: 20px 0 49px 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .author__photo {
+    width: 255px;
+    height: 307px;
+    min-width: 255px;
+    min-height: 307px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .author {
+    padding: 70px 14px 70px 14px;
+  }
+
+  .author__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .author__container {
+    margin: 28px 0 0 0;
+    flex-direction: column-reverse;
+  }
+
+  .author__about {
+    max-width: 292px;
+    margin: 40px auto 0 auto;
+  }
+
+  .author__name {
+    font-size: 30px;
+    line-height: 37px;
+  }
+
+  .author__occupation {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 20px 0 0 0;
+  }
+
+  .author__biography {
+    margin: 20px 0 22px 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .author__photo {
+    margin: 60px auto 0 auto;
+    max-width: 292px;
+    min-height: 352px;
+    width: 100%;
+    height: 100%;
+  }
+}
