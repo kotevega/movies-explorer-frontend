@@ -1,14 +1,24 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ searchMovies, searchQuery, setSearchQuery }) {
+function SearchForm({
+  searchMovies,
+  searchQuery,
+  setSearchQuery,
+  isShort,
+  setIsShort,
+}) {
   const [searchInputError, setSearchInputError] = useState(false);
+  const location = useLocation();
 
   function handleSearch(e) {
+    if (location.pathname === "/movies") {
+      localStorage.setItem("searchQuery", e.target.value);
+    }
     setSearchQuery(e.target.value);
     setSearchInputError(false);
-    localStorage.setItem("searchQuery", e.target.value);
   }
 
   function handleSubmit(e) {
@@ -40,7 +50,7 @@ function SearchForm({ searchMovies, searchQuery, setSearchQuery }) {
           Поиск
         </button>
       </div>
-      <FilterCheckbox />
+      <FilterCheckbox isShort={isShort} setIsShort={setIsShort} />
     </form>
   );
 }

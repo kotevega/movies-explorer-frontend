@@ -15,8 +15,7 @@ function Header({ isLoggedIn }) {
       <Link to="/">
         <img src={logo} alt="логотип проекта" className="header__logo" />{" "}
       </Link>
-      {/* {isLoggedIn ? <NavigationLogin /> : <NavigationLogout />} */}
-      {isLoggedIn ? <NavigationLogout /> : <NavigationLogin />}
+      {isLoggedIn ? <NavigationLogin /> : <NavigationLogout />}
     </header>
   );
 }

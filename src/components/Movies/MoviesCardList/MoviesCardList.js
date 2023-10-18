@@ -3,11 +3,14 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 
 function MoviesCardList({
+  isSavedMovieCard,
   allMovieCards,
   searchQuery,
   cards,
   isPreloader,
   searchError,
+  setIsSavedMovieCard,
+  setFilterMovieCards
 }) {
   return (
     <section className="cards">
@@ -22,7 +25,7 @@ function MoviesCardList({
       ) : (
         <ul className="card-list">
           {cards.map((card) => (
-            <MoviesCard key={card.id} card={card} />
+            <MoviesCard key={card.id ?? card._id} card={card} isSavedMovieCard={isSavedMovieCard} setIsSavedMovieCard={setIsSavedMovieCard} setFilterMovieCards={setFilterMovieCards}/>
           ))}
           {allMovieCards.length !== 0 &&
           cards.length === 0 &&

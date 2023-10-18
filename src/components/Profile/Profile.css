@@ -57,7 +57,8 @@
   border-bottom: 1px solid #4285f4;
 }
 
-.profile__edit-button {
+.profile__edit-button,
+.profile__edit-button_disabled {
   margin: 204px auto 0 auto;
   text-align: center;
   padding: 0;
@@ -65,11 +66,15 @@
   border: none;
   box-shadow: none;
   color: #ffffff;
-  cursor: pointer;
+  /* cursor: pointer; */
   display: flex;
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
+}
+
+.profile__edit-button {
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {
@@ -106,9 +111,14 @@
   line-height: 16px;
   text-align: center;
   color: #ee3465;
-  margin: 16px 0 0 0;
+  margin: 16px auto 0 auto;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: #202020;
 }
 
 .profile__logout:hover {

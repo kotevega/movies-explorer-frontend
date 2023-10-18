@@ -1,14 +1,97 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./MoviesCard.css";
-// import film from "../../../images/film.jpg";
 import { useLocation, Link } from "react-router-dom";
-
-function MoviesCard({ card }) {
-  const [isSaveFilm, setIsSaveFilm] = React.useState(false);
+import api from "../../../utils/MainApi";
+function MoviesCard({
+  card,
+  isSavedMovieCard,
+  setIsSavedMovieCard,
+  setFilterMovieCards,
+}) {
+  const [isSaveFilm, setIsSaveFilm] = useState(false);
   const location = useLocation();
+  const [disButton, setDisButton] = useState(false);
+  useEffect(() => {
+    const likeMovie = JSON.parse(localStorage.getItem("savedMovies")).find(
+      (film) => film.movieId === card.id
+    );
+    if (likeMovie) {
+      setIsSaveFilm(true);
+    } else {
+      setIsSaveFilm(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  function toggleSaveFilm() {
+  function handleMovieLike(movie) {
+    api
+      .saveMovie({
+        country: movie.country,
+        description: movie.description,
+        director: movie.director,
+        duration: movie.duration,
+        image: `https://api.nomoreparties.co/${movie.image.url}`,
+        thumbnail: `https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`,
+        nameEN: movie.nameEN,
+        nameRU: movie.nameRU,
+        trailerLink: movie.trailerLink,
+        year: movie.year,
+        movieId: movie.id,
+      })
+      .then((res) => {
+        setIsSaveFilm(true);
+        const array = isSavedMovieCard;
+        array.push(res);
+        setIsSavedMovieCard(array);
+        localStorage.setItem("savedMovies", JSON.stringify(array));
+        setDisButton(false);
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+        setIsSaveFilm(false);
+        setDisButton(false);
+      });
+  }
+
+  function handleMovieDelete(movie) {
+    const findMovie = isSavedMovieCard.find(
+      (film) => film.movieId === movie.id
+    );
+    api
+      .deleteMovieFromApi(movie._id ? movie._id : findMovie._id)
+      .then((res) => {
+        setIsSaveFilm(false);
+        const arr = isSavedMovieCard.filter((film) => {
+          if (movie._id) {
+            return film._id !== movie._id;
+          } else {
+            return film.movieId !== movie.id;
+          }
+        });
+        setIsSavedMovieCard(arr);
+        if (location.pathname === "/saved-movies") {
+          setFilterMovieCards(arr);
+        }
+
+        localStorage.setItem("savedMovies", JSON.stringify(arr));
+        setDisButton(false);
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+        setDisButton(false);
+
+        setIsSaveFilm(true);
+      });
+  }
+
+  function toggleSaveFilm(movie) {
     setIsSaveFilm(!isSaveFilm);
+    setDisButton(true);
+    if (isSaveFilm) {
+      handleMovieDelete(movie);
+    } else {
+      handleMovieLike(movie);
+    }
   }
 
   function converterHoursMins(mins) {
@@ -31,23 +114,28 @@ function MoviesCard({ card }) {
         <img
           className="card__image"
           src={
-            card.image
+            card.image?.url
               ? `https://api.nomoreparties.co/${card.image.url}`
               : card.image
           }
-          alt={`Обложка фильма: ${card.name}`}
+          alt={`Обложка фильма: ${card.RU || card.nameEN}`}
         />
       </Link>
       {location.pathname === "/movies" ? (
         <button
+          disabled={disButton}
           className={!isSaveFilm ? "card__save-button" : "card__ok-button"}
           type="button"
-          onClick={toggleSaveFilm}
+          onClick={() => toggleSaveFilm(card)}
         >
           {!isSaveFilm ? "Сохранить" : ""}
         </button>
       ) : (
-        <button type="button" className="card__delete-button"></button>
+        <button
+          type="button"
+          className="card__delete-button"
+          onClick={() => handleMovieDelete(card)}
+        ></button>
       )}
     </li>
   );

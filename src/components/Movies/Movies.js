@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Movies.css";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import { MovieApi } from "../../utils/MoviesApi";
+import api from "../../utils/MainApi";
 
 function Movies() {
   const [searchQuery, setSearchQuery] = useState(
@@ -14,22 +15,46 @@ function Movies() {
   const [filterMovieCards, setFilterMovieCards] = useState(
     JSON.parse(localStorage.getItem("filterMovies")) || []
   );
-
+  const [isShort, setIsShort] = useState(
+    JSON.parse(localStorage.getItem("isShort")) || false
+  );
   const [isPreloader, setIsPreloader] = useState(false);
   const [searchError, setSeachError] = useState(false);
+  const [isSavedMovieCard, setIsSavedMovieCard] = useState([]);
 
-  function filter(data) {
-    console.log(data);
+  function filterName(data) {
     if (searchQuery) {
-      return data.filter(
-        (movie) =>
-          movie.nameEN.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      return data.filter((movie) => {
+        const nameEn = movie.nameEN
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+        const nameRu = movie.nameRU
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+        if (!isShort) {
+          return nameEn || nameRu;
+        } else {
+          return (
+            (nameEn && movie.duration <= 40) || (nameRu && movie.duration <= 40)
+          );
+        }
+      });
     } else {
       return [];
     }
   }
+
+  useEffect(() => {
+    api
+    .getSavedMovies()
+    .then((res) => {
+      setIsSavedMovieCard(res);
+      localStorage.setItem("savedMovies", JSON.stringify(res));
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    });
+  }, [])
 
   function searchMovies() {
     if (allMovieCards.length === 0) {
@@ -38,8 +63,11 @@ function Movies() {
         .then((cards) => {
           localStorage.setItem("allMovies", JSON.stringify(cards));
           setAllMovieCards(cards);
-          setFilterMovieCards(filter(cards));
-          localStorage.setItem("filterMovies", JSON.stringify(filter(cards)));
+          setFilterMovieCards(filterName(cards));
+          localStorage.setItem(
+            "filterMovies",
+            JSON.stringify(filterName(cards))
+          );
           setIsPreloader(false);
         })
         .catch((err) => {
@@ -50,11 +78,24 @@ function Movies() {
       if (searchQuery.length === 0) {
         return setFilterMovieCards([]);
       } else {
-        setFilterMovieCards(filter(allMovieCards));
-        localStorage.setItem("filterMovies", JSON.stringify(filter(allMovieCards)));
+        setFilterMovieCards(filterName(allMovieCards));
+        localStorage.setItem(
+          "filterMovies",
+          JSON.stringify(filterName(allMovieCards))
+        );
       }
     }
   }
+
+  function handleSetIsShort() {
+    setIsShort(!isShort);
+    localStorage.setItem("isShort", JSON.stringify(!isShort));
+  }
+
+  React.useEffect(() => {
+    setFilterMovieCards(filterName(allMovieCards));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isShort]);
 
   return (
     <main className="movies">
@@ -62,10 +103,13 @@ function Movies() {
         searchQuery={searchQuery}
         searchMovies={searchMovies}
         setSearchQuery={setSearchQuery}
+        isShort={isShort}
+        setIsShort={handleSetIsShort}
       />
       <MoviesCardList
         allMovieCards={allMovieCards}
-        // cards={filter(allMovieCards)}
+        isSavedMovieCard={isSavedMovieCard}
+        setIsSavedMovieCard={setIsSavedMovieCard}
         cards={filterMovieCards}
         searchQuery={searchQuery}
         isPreloader={isPreloader}

@@ -45,6 +45,6 @@
 
 @media screen and (max-width: 380px) {
   .cards__error_active {
-    max-width: 300px;
+    max-width: 270px;
   }
 }

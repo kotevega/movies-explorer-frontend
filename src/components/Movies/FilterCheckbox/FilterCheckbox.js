@@ -1,9 +1,9 @@
 import "./FilterCheckbox.css";
 
-function FilterCheckbox() {
+function FilterCheckbox({isShort, setIsShort}) {
   return (
     <div class="filter">
-      <input type="checkbox" name="toggle" class="filter__checkbox" />
+      <input type="checkbox" name="toggle" class="filter__checkbox" checked={isShort} onChange={setIsShort}/>
       <label class="filter__text">Короткометражки</label>
     </div>
   );

@@ -51,7 +51,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data.email,
+        email: data.email,
       }),
     }).then((res) => this._checkResponse(res));
   }
@@ -82,6 +82,7 @@ class Api {
 
   signOut() {
     return fetch(`${this._baseUrl}/signout`, {
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -103,7 +104,7 @@ class Api {
 }
 
 export default Api = new Api({
-  baseUrl: "http://localhost:3002",
-  // baseUrl: "https://api.koloproject.nomoredomainsicu.ru/",
+  // baseUrl: "http://localhost:3003",
+  baseUrl: "https://api.koloproject.nomoredomainsicu.ru",
   headers: { Accept: "application/json", "Content-Type": "application/json" },
 });
