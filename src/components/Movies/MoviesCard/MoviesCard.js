@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./MoviesCard.css";
 import { useLocation, Link } from "react-router-dom";
 import api from "../../../utils/MainApi";
+import { MIN } from "../../../utils/constants";
+
 function MoviesCard({
   card,
   isSavedMovieCard,
@@ -95,9 +97,9 @@ function MoviesCard({
   }
 
   function converterHoursMins(mins) {
-    const hours = Math.trunc(mins / 60);
-    const minutes = mins % 60;
-    if (mins >= 60) {
+    const hours = Math.trunc(mins / MIN);
+    const minutes = mins % MIN;
+    if (mins >= MIN) {
       return hours + "ч " + minutes + "м";
     } else {
       return minutes + "м";

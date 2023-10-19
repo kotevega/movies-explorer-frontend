@@ -4,6 +4,18 @@ import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import { MovieApi } from "../../utils/MoviesApi";
 import api from "../../utils/MainApi";
+import {
+  DESKTOP_WIDTH,
+  DESKTOP_CARDS,
+  DESKTOP_CARDS_MORE,
+  TABLET_WIDTH,
+  TABLET_CARDS,
+  TABLET_CARDS_MORE,
+  MOBILE_WIDTH,
+  MOBILE_CARDS,
+  MOBILE_CARDS_MORE,
+  SHORT_MOVIE,
+} from "../../utils/constants";
 
 function Movies() {
   const [searchQuery, setSearchQuery] = useState(
@@ -18,9 +30,48 @@ function Movies() {
   const [isShort, setIsShort] = useState(
     JSON.parse(localStorage.getItem("isShort")) || false
   );
+
   const [isPreloader, setIsPreloader] = useState(false);
   const [searchError, setSeachError] = useState(false);
   const [isSavedMovieCard, setIsSavedMovieCard] = useState([]);
+
+  const [cardOfView, setCardOfView] = useState(0);
+  const [addCardButtonMore, setAddCardButtonMore] = useState(0);
+  const [handleButtonMore, setHanldeButtonMore] = useState(false);
+
+  function handleSetCardOfView() {
+    const resize = window.innerWidth;
+
+    if (resize > DESKTOP_WIDTH) {
+      console.log(resize);
+      setCardOfView(DESKTOP_CARDS);
+      setAddCardButtonMore(DESKTOP_CARDS_MORE);
+    }
+
+    if (resize >= TABLET_WIDTH && resize <= DESKTOP_WIDTH) {
+      setCardOfView(TABLET_CARDS);
+      setAddCardButtonMore(TABLET_CARDS_MORE);
+    }
+
+    if (resize >= MOBILE_WIDTH && resize < TABLET_WIDTH) {
+      setCardOfView(MOBILE_CARDS);
+      setAddCardButtonMore(MOBILE_CARDS_MORE);
+    }
+    handleHadeButtonMore();
+  }
+
+  function handleMoreButtonClick() {
+    setCardOfView(cardOfView + addCardButtonMore);
+    handleHadeButtonMore();
+  }
+
+  function handleHadeButtonMore() {
+    if (cardOfView >= filterMovieCards.length) {
+      setHanldeButtonMore(true);
+    } else {
+      setHanldeButtonMore(false);
+    }
+  }
 
   function filterName(data) {
     if (searchQuery) {
@@ -35,7 +86,8 @@ function Movies() {
           return nameEn || nameRu;
         } else {
           return (
-            (nameEn && movie.duration <= 40) || (nameRu && movie.duration <= 40)
+            (nameEn && movie.duration <= SHORT_MOVIE) ||
+            (nameRu && movie.duration <= SHORT_MOVIE)
           );
         }
       });
@@ -46,15 +98,22 @@ function Movies() {
 
   useEffect(() => {
     api
-    .getSavedMovies()
-    .then((res) => {
-      setIsSavedMovieCard(res);
-      localStorage.setItem("savedMovies", JSON.stringify(res));
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
+      .getSavedMovies()
+      .then((res) => {
+        setIsSavedMovieCard(res);
+        localStorage.setItem("savedMovies", JSON.stringify(res));
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
+
+    handleSetCardOfView();
+
+    window.addEventListener("resize", () => {
+      handleSetCardOfView();
     });
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function searchMovies() {
     if (allMovieCards.length === 0) {
@@ -97,6 +156,12 @@ function Movies() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShort]);
 
+  React.useEffect(() => {
+    handleHadeButtonMore();
+    handleSetCardOfView();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterMovieCards]);
+
   return (
     <main className="movies">
       <SearchForm
@@ -110,12 +175,20 @@ function Movies() {
         allMovieCards={allMovieCards}
         isSavedMovieCard={isSavedMovieCard}
         setIsSavedMovieCard={setIsSavedMovieCard}
-        cards={filterMovieCards}
+        cards={filterMovieCards.slice(0, cardOfView)}
         searchQuery={searchQuery}
         isPreloader={isPreloader}
         searchError={searchError}
       />
-      <button className="movies__more-button" type="button">
+      <button
+        className={
+          !handleButtonMore
+            ? "movies__more-button"
+            : "movies__more-button_disabled"
+        }
+        type="button"
+        onClick={handleMoreButtonClick}
+      >
         Ещё
       </button>
     </main>

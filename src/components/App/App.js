@@ -17,6 +17,7 @@ import ProtectedRoute from "../../utils/ProtectedRoute";
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [checkTokenLogin, setCheckTokenLogin] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ function App() {
 
   function handleLogin() {
     setLoggedIn(true);
+    setCheckTokenLogin(true);
   }
 
   function checkToken() {
@@ -50,11 +52,12 @@ function App() {
           return;
         }
         handleLogin();
-        // navigate("/movies", { replace: true });
       })
-      .catch((evt) => {
+      .catch((err) => {
         setLoggedIn(false);
-        console.log(`Ошибка: ${evt}`);
+        setCheckTokenLogin(true);
+
+        console.log(`Ошибка: ${err}`);
       });
   }
 
@@ -64,6 +67,7 @@ function App() {
   }, []);
 
   function logOut() {
+    // setCheckTokenLogin(true);
     api
       .signOut()
       .then((res) => {
@@ -84,34 +88,40 @@ function App() {
       <div className="root">
         <div className="page">
           {locationHeader && <Header isLoggedIn={isLoggedIn} />}
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/*" element={<NoFound />} />
-            <Route path="/signin" element={<Login onLogin={handleLogin} />} />
-            <Route path="/signup" element={<Register />} />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute
-                  element={Profile}
-                  isLoggedIn={isLoggedIn}
-                  logOut={logOut}
-                />
-              }
-            />
-            <Route
-              path="/movies"
-              element={
-                <ProtectedRoute element={Movies} isLoggedIn={isLoggedIn} />
-              }
-            />
-            <Route
-              path="/saved-movies"
-              element={
-                <ProtectedRoute element={SavedMovies} isLoggedIn={isLoggedIn} />
-              }
-            />
-          </Routes>
+          {checkTokenLogin && (
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/*" element={<NoFound />} />
+              <Route path="/signin" element={<Login onLogin={handleLogin} />} />
+              <Route path="/signup" element={<Register />} />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    element={Profile}
+                    logOut={logOut}
+                    setCurrentUser={setCurrentUser}
+                  />
+                }
+              />
+              <Route
+                path="/movies"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn} element={Movies} />
+                }
+              />
+              <Route
+                path="/saved-movies"
+                element={
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    element={SavedMovies}
+                  />
+                }
+              />
+            </Routes>
+          )}
           {locationFooter && <Footer />}
         </div>
       </div>

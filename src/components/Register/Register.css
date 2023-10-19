@@ -29,7 +29,7 @@
 }
 
 .register__case:last-of-type {
-  margin: 0;
+  margin: 0 0 135px 0;
 }
 
 .register__text-input {
@@ -71,15 +71,36 @@
   line-height: 12px;
 }
 
+.register__changes-message {
+  margin: 0 0 15px 0;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+}
+
 .register__submit-button {
   background: #4285f4;
   color: #ffffff;
+  cursor: pointer;
+}
+
+.register__submit-button_disabled {
+  background: #f8f8f8;
+  color: #c2c2c2;
+}
+
+.register__submit-button,
+.register__submit-button_disabled {
   width: 100%;
   padding: 13px 0 15px 0;
-  margin: 135px 0 17px 0;
+  margin: 0 0 17px 0;
   border: none;
   border-radius: 3px;
-  cursor: pointer;
+
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
@@ -132,9 +153,13 @@
     margin: 80px 0 0 0;
   }
 
+  .register__case:last-of-type {
+    margin: 0 0 208px 0;
+  }
+
   .register__submit-button {
     padding: 15px 0 15px 0;
-    margin: 223px 0 16px 0;
+    margin: 0 0 16px 0;
     font-size: 12px;
     line-height: 15px;
   }

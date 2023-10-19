@@ -102,25 +102,6 @@
   }
 
   .card__name {
-    max-width: 224px;
-    width: 100%;
-  }
-
-  .card__image {
-    width: 300px;
-    height: 168px;
-    min-width: 300px;
-    min-height: 168px;
-  }
-}
-
-@media screen and (max-width: 380px) {
-  .card {
-    width: 300px;
-    height: 271px;
-  }
-
-  .card__name {
     margin: 14px 0 14px 14px;
     font-size: 12px;
     max-width: 200px;

@@ -1,39 +1,69 @@
 import "./Login.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/header_logo.svg";
 import api from "../../utils/MainApi";
+import { FormValidation } from "../../utils/useFormValidation";
 
 function Login({ onLogin }) {
   const navigate = useNavigate();
+  const [disButton, setDisButton] = useState(true);
+  const [resultChanges, setresultChanges] = useState("");
   const [formValue, setFormValue] = useState({
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    if (formValue.email.length !== 0 && formValue.password.length !== 0) {
+      if (errors.email.length === 0 && errors.password.length === 0) {
+        setDisButton(false);
+      } else {
+        setDisButton(true);
+      }
+    } else {
+      setDisButton(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formValue]);
 
   const handleChange = (e) => {
     e.preventDefault();
 
     const { name, value } = e.target;
+    const err = FormValidation(name, value);
+    setErrors({ ...errors, [name]: err.fieldName });
     setFormValue({
       ...formValue,
       [name]: value,
     });
   };
 
+  function resetErrMessage() {
+    setTimeout(() => {
+      setresultChanges("");
+    }, 3000);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     api
       .authorize(formValue.email, formValue.password)
-      .then((data) => {
-        console.log(data)
-        console.log(data.cookie)
+      .then((res) => {
         onLogin(formValue.email);
         navigate("/movies", { replace: true });
       })
       .catch((err) => {
-        // onError();
         console.log(`Ошибка: ${err}`);
+        setresultChanges(
+          "При авторизации произошла ошибка. Пожалуйста повторите ещё раз"
+        );
+        resetErrMessage();
+        setDisButton(true);
       });
   };
 
@@ -43,7 +73,7 @@ function Login({ onLogin }) {
         <img src={logo} alt="логотип проекта" className="login__logo" />
       </Link>
       <h1 className="login__title">Рады видеть!</h1>
-      <form className="login__form" onSubmit={handleSubmit}>
+      <form className="login__form" noValidate onSubmit={handleSubmit}>
         <div className="login__case">
           <p className="login__text-input">E-mail</p>
           <input
@@ -55,7 +85,7 @@ function Login({ onLogin }) {
             value={formValue.email}
             onChange={handleChange}
           ></input>
-          <span className="login__err-input"></span>
+          <span className="login__err-message">{errors.email}</span>
         </div>
         <div className="login__case">
           <p className="login__text-input">Пароль</p>
@@ -65,14 +95,21 @@ function Login({ onLogin }) {
             type="password"
             name="password"
             minLength="2"
-            maxLength="40"
+            maxLength="15"
             required
             value={formValue.password}
             onChange={handleChange}
           ></input>
-          <span className="login__err-message"></span>
+          <span className="login__err-message">{errors.password}</span>
         </div>
-        <button type="submit" className="login__submit-button">
+        <span className="login__changes-message">{resultChanges}</span>
+        <button
+          disabled={disButton}
+          type="submit"
+          className={
+            disButton ? "login__submit-button_disabled" : "login__submit-button"
+          }
+        >
           Войти
         </button>
         <Link className="login__login-link" to="/signup">

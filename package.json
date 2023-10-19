@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./build/* kotevega@158.160.46.173:/home/kotevega/frontend-diplom"
+    "deploy": "npm run build && scp -r ./build/* kotevega@158.160.46.173:/home/kotevega/frontend"
   },
   "eslintConfig": {
     "extends": [
