@@ -11,6 +11,7 @@ function MoviesCardList({
   searchError,
   setIsSavedMovieCard,
   setFilterMovieCards,
+  filterMovieCards
 }) {
   return (
     <section className="cards">
@@ -27,6 +28,7 @@ function MoviesCardList({
           {cards.map((card) => (
             <MoviesCard
               key={card.id ?? card._id}
+              filterMovieCards={filterMovieCards}
               card={card}
               isSavedMovieCard={isSavedMovieCard}
               setIsSavedMovieCard={setIsSavedMovieCard}

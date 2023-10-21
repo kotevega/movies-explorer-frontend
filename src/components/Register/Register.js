@@ -5,7 +5,7 @@ import logo from "../../images/header_logo.svg";
 import api from "../../utils/MainApi";
 import { FormValidation } from "../../utils/useFormValidation";
 
-function Register() {
+function Register({ onLogin }) {
   const navigate = useNavigate();
   const [resultChanges, setresultChanges] = useState("");
   const [disButton, setDisButton] = useState(true);
@@ -63,7 +63,20 @@ function Register() {
     api
       .register(formValue.name, formValue.email, formValue.password)
       .then((res) => {
-        navigate("/signin", { replace: true });
+        api
+          .authorize(formValue.email, formValue.password)
+          .then((res) => {
+            onLogin(formValue.email);
+            navigate("/movies", { replace: true });
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+            setresultChanges(
+              "При авторизации произошла ошибка. Пожалуйста повторите ещё раз"
+            );
+            resetErrMessage();
+            setDisButton(true);
+          });
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);

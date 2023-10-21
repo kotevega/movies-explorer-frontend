@@ -9,6 +9,7 @@ function MoviesCard({
   isSavedMovieCard,
   setIsSavedMovieCard,
   setFilterMovieCards,
+  filterMovieCards
 }) {
   const [isSaveFilm, setIsSaveFilm] = useState(false);
   const location = useLocation();
@@ -72,9 +73,9 @@ function MoviesCard({
         });
         setIsSavedMovieCard(arr);
         if (location.pathname === "/saved-movies") {
+          const arr = filterMovieCards.filter(film => film._id !== movie._id)
           setFilterMovieCards(arr);
         }
-
         localStorage.setItem("savedMovies", JSON.stringify(arr));
         setDisButton(false);
       })

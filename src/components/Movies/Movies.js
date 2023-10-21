@@ -43,7 +43,6 @@ function Movies() {
     const resize = window.innerWidth;
 
     if (resize > DESKTOP_WIDTH) {
-      console.log(resize);
       setCardOfView(DESKTOP_CARDS);
       setAddCardButtonMore(DESKTOP_CARDS_MORE);
     }
@@ -107,11 +106,17 @@ function Movies() {
         console.log(`Ошибка: ${err}`);
       });
 
-    handleSetCardOfView();
-
     window.addEventListener("resize", () => {
       handleSetCardOfView();
     });
+    handleSetCardOfView();
+
+    return () => {
+      window.removeEventListener("resize", () => {
+        handleSetCardOfView();
+      });
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -179,6 +184,7 @@ function Movies() {
         searchQuery={searchQuery}
         isPreloader={isPreloader}
         searchError={searchError}
+        filterMovieCards={filterMovieCards}
       />
       <button
         className={

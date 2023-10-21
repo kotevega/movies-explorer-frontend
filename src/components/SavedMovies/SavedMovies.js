@@ -80,6 +80,7 @@ function SavedMovies() {
         isPreloader={isPreloader}
         searchError={searchError}
         setFilterMovieCards={setFilterMovieCards}
+        filterMovieCards={filterMovieCards}
       />
     </main>
   );

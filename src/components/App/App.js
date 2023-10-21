@@ -28,6 +28,13 @@ function App() {
 
   const locationHeader = locationFooter || location.pathname === "/profile";
 
+  if (
+    isLoggedIn &&
+    (location.pathname === "/signup" || location.pathname === "/signin")
+  ) {
+    navigate("/movies", { replace: true });
+  }
+
   useEffect(() => {
     if (isLoggedIn) {
       api
@@ -93,7 +100,10 @@ function App() {
               <Route path="/" element={<Main />} />
               <Route path="/*" element={<NoFound />} />
               <Route path="/signin" element={<Login onLogin={handleLogin} />} />
-              <Route path="/signup" element={<Register />} />
+              <Route
+                path="/signup"
+                element={<Register onLogin={handleLogin} />}
+              />
               <Route
                 path="/profile"
                 element={
