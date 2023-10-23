@@ -3,6 +3,7 @@
 }
 
 .movies__more-button {
+  display: block;
   max-width: 1140px;
   width: 100%;
   border: none;
@@ -15,6 +16,10 @@
   font-weight: 500;
   line-height: 15px;
   margin: 60px 0 0 0;
+}
+
+.movies__more-button_disabled {
+  display: none;
 }
 
 .movies__more-button:hover {
